@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khoi Ha | Japanese Linguist & Developer</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette: Nhật Bản hiện đại - Sang trọng & Tinh tế */
+            --bg-body: #fdfdfc; 
+            --bg-card: #ffffff;
+            --text-main: #1a1a1a;
+            --text-sub: #555555;
+            --accent: #bc002d; /* Đỏ Nhật Bản truyền thống */
+            --border: #e0e0e0;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.dark-mode {
+            --bg-body: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --text-main: #f5f5f5;
+            --text-sub: #a0a0a0;
+            --border: #2a2a2a;
+            --accent: #ff4d4d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+            transition: background 0.5s var(--ease), color 0.5s var(--ease);
+        }
+
+        .container { max-width: 1100px; margin: auto; padding: 0 30px; }
+
+        /* ==============================
+           HEADER
+           ============================== */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(253, 253, 252, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            transition: all 0.3s;
+        }
+        body.dark-mode header { background: rgba(15, 15, 15, 0.8); }
+
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { 
+            font-family: var(--font-serif); 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            letter-spacing: -1px;
+            cursor: pointer;
+        }
+        .logo span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            color: var(--text-main); 
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        .header-right { display: flex; align-items: center; gap: 20px; }
+        .theme-toggle { cursor: pointer; font-size: 1.1rem; color: var(--text-main); }
+
+        /* ==============================
+           HERO SECTION
+           ============================== */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 80px;
+            gap: 60px;
+        }
+
+        .hero-info { flex: 1.2; }
+        
+        .hero-hello { 
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero-desc { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 20px; }
+        .hero-jp { font-style: italic; opacity: 0.7; font-size: 0.95rem; display: block; margin-top: 10px; }
+        
+        .hero-stats {
+            margin-top: 40px;
+            display: flex;
+            gap: 40px;
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+        }
+
+        .stat-item h4 { font-size: 1.8rem; font-family: var(--font-serif); color: var(--accent); }
+        .stat-item p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-sub); }
+
+        .hero-img { flex: 0.8; position: relative; }
+
+        .profile-frame {
+            position: relative;
+            padding: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+        }
+
+        .profile-frame::before {
+            content: "";
+            position: absolute;
+            top: -10px; right: -10px;
+            width: 60px; height: 60px;
+            border-top: 3px solid var(--accent);
+            border-right: 3px solid var(--accent);
+            z-index: 1;
+        }
+
+        .hero-img img { 
+            width: 100%; 
+            display: block;
+            filter: grayscale(30%); 
+            transition: 0.7s var(--ease); 
+        }
+        .hero-img:hover img { filter: grayscale(0%); transform: scale(1.02); }
+
+        /* ==============================
+           CORE SKILLS & PROJECTS
+           ============================== */
+        h2.section-title {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            margin: 100px 0 50px;
+            position: relative;
+            display: inline-block;
+        }
+        h2.section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 10px; left: 0;
+            width: 100%; height: 8px;
+            background: var(--accent);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .zen-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            transition: all 0.4s var(--ease);
+        }
+
+        .zen-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .zen-card i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .zen-card h3 { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 15px; }
+        .zen-card p { font-size: 0.95rem; color: var(--text-sub); }
+
+        /* Project Card */
+        .project-card { padding: 0; overflow: hidden; }
+        .project-img { height: 240px; overflow: hidden; }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: 1.2s var(--ease); }
+        .project-card:hover img { transform: scale(1.1); }
+        .project-info { padding: 30px; }
+
+        /* ==============================
+           FOOTER / CONTACT
+           ============================== */
+        .btn-zen {
+            background: var(--text-main);
+            color: var(--bg-body);
+            padding: 16px 35px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 25px;
+            transition: 0.4s;
+        }
+        .btn-zen:hover { background: var(--accent); color: white; transform: translateY(-3px); }
+
+        footer {
+            text-align: center;
+            padding: 120px 0 60px;
+            border-top: 1px solid var(--border);
+            margin-top: 100px;
+        }
+
+        .email-link {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+        .email-link:hover { border-bottom-color: var(--accent); }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 140px; }
+            .hero-title { font-size: 3.2rem; }
+            .hero-stats { justify-content: center; }
+            .hero-desc { margin: 0 auto; }
+            .nav-links { display: none; } /* Có thể làm menu hamburger nếu cần */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo" onclick="window.scrollTo(0,0)">KH<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="#hero">Profile</a></li>
+                <li><a href="#skills">Kỹ năng</a></li>
+                <li><a href="#activities">Dự án</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+            <div class="header-right">
+                <div class="theme-toggle"><i class="fas fa-moon"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="hero" class="hero">
+            <div class="hero-info">
+                <div class="hero-hello">Hajimemashite!</div>
+                <h1 class="hero-title">Hà Trọng Khôi</h1>
+                <p class="hero-desc">
+                    Sinh viên Tiếng Nhật Thương mại tại FTU. Tôi kết hợp khả năng ngôn ngữ bậc cao với tư duy dữ liệu để giải quyết các vấn đề văn hóa và kinh doanh hiện đại.
+                    <span class="hero-jp">日本文化と言語の専門家を目指しております。</span>
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item"><h4>N1</h4><p>JLPT Level</p></div>
+                    <div class="stat-item"><h4>3.8</h4><p>GPA FTU</p></div>
+                    <div class="stat-item"><h4>02</h4><p>Nghiên cứu</p></div>
+                </div>
+                
+                <a href="#contact" class="btn-zen">KẾT NỐI VỚI TÔI</a>
+            </div>
+            
+            <div class="hero-img">
+                <div class="profile-frame">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&h=800&auto=format&fit=crop" alt="Hà Trọng Khôi">
+                </div>
+            </div>
+        </section>
+
+        <div style="text-align: center;"><h2 class="section-title">Năng lực cốt lõi</h2></div>
+        <div id="skills" class="grid">
+            <div class="zen-card">
+                <i class="fas fa-scroll"></i>
+                <h3>Biên phiên dịch</h3>
+                <p>Thành thạo biên dịch tài liệu thương mại, hợp đồng và nội dung học thuật Việt - Nhật - Anh với độ chính xác cao.</p>
+            </div>
+            <div class="zen-card">
+                <i class="fas fa-fan"></i>
+                <h3>Phân tích Văn hóa</h3>
+                <p>Nghiên cứu sâu về sự giao thoa giữa truyền thống và hiện đại (Manga, Trà đạo, Ikebana) trong xã hội Nhật Bản.</p>
+            </div>
+            <div class="zen-card">
+                <i class="fas fa-terminal"></i>
+                <h3>Tech-Oriented</h3>
+                <p>Sử dụng SQL, HTML/CSS và tư duy lập trình để tối ưu hóa quy trình nghiên cứu và quản lý dữ liệu ngôn ngữ.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center;"><h2 class="section-title">Dự án tiêu biểu</h2></div>
+        <div id="activities" class="grid">
+            <div class="zen-card project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop" alt="Osaka University">
+                </div>
+                <div class="project-info">
+                    <h3>Du học Đại học Osaka</h3>
+                    <p>Chương trình trao đổi chuyên sâu về ngôn ngữ và phương pháp nghiên cứu văn hóa đại chúng tại Nhật Bản.</p>
+                </div>
+            </div>
+            <div class="zen-card project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=800&auto=format&fit=crop" alt="Ikebana Research">
+                </div>
+                <div class="project-info">
+                    <h3>Hồi sinh Ikebana qua Manga</h3>
+                    <p>Nghiên cứu khoa học đoạt giải, phân tích cách Manga giúp giới trẻ tiếp cận lại nghệ thuật cắm hoa truyền thống.</p>
+                </div>
+            </div>
+            <div class="zen-card project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=800&auto=format&fit=crop" alt="Database Project">
+                </div>
+                <div class="project-info">
+                    <h3>Hệ thống Food Rescue</h3>
+                    <p>Thiết kế cấu trúc cơ sở dữ liệu giúp kết nối thực phẩm dư thừa, ứng dụng SQL và tư duy giải quyết vấn đề.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer id="contact">
+            <div class="hero-hello" style="margin-bottom: 20px;">Bạn muốn trao đổi thêm?</div>
+            <h2 style="font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 40px;">Let's Create Something Together.</h2>
+            <a href="mailto:k61.2211740054@ftu.edu.vn" class="email-link">k61.2211740054@ftu.edu.vn</a>
+            <p style="margin-top: 50px; font-size: 0.8rem; color: var(--text-sub); letter-spacing: 1px;">&copy; 2026 KHOI HA. DESIGNED WITH ZEN PHILOSOPHY.</p>
+        </footer>
+    </div>
+
+    <script>
+        const toggle = document.querySelector(".theme-toggle");
+        const icon = toggle.querySelector("i");
+
+        // Theme Switcher Logic
+        if (localStorage.getItem("zen-theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            icon.classList.replace("fa-moon", "fa-sun");
+        }
+
+        toggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            if (document.body.classList.contains("dark-mode")) {
+                icon.classList.replace("fa-moon", "fa-sun");
+                localStorage.setItem("zen-theme", "dark");
+            } else {
+                icon.classList.replace("fa-sun", "fa-moon");
+                localStorage.setItem("zen-theme", "light");
+            }
+        });
+
+        // Animation on scroll đơn giản
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.zen-card').forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(30px)";
+            card.style.transition = "all 0.8s var(--ease)";
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
